@@ -28,10 +28,11 @@ You are refining an existing one-page corporate website for ZEROXAND, a game dev
    - 03 Roha — Scrap Hunter
    - 04 Nut — Mechanic / Hacker
    - 05 Sion — Sniper / Scout
-   Then a "Classified" project file card with the specs.
+   Then a full-width "Classified" project archive file (stamp, restricted-access tag, spec rows, one redacted "Internal notes" row).
 3. Track Record: Ragnarok Monster World — developed & published in-house, global service 2024–2025. Artwork dominates; carousel controls stay quiet. Legal line: "Ragnarok and related marks are trademarks of their respective owners."
-4. Company + Contact (one section): Legal name, Incorporated, Primary activity; "Let's talk." with email and office.
-5. Footer: © ZERO X AND PTE. LTD. · Singapore
+4. Company: editorial profile — "ZERO X AND / PTE. LTD." headline, Singapore / Est. 2021, one-line description, registry rows (Legal name, Incorporated, Primary activity only).
+5. Contact: large "LET'S TALK." with a red arrow (mailto), email and Singapore office.
+6. Footer: © ZERO X AND PTE. LTD. · Singapore
 
 ## Principles
 Project X = anticipation, Ragnarok Monster World = proof, Company = trust, ZERO X AND = brand.

@@ -106,16 +106,6 @@
     .next-title:hover .nt-when::after{transform:translateX(4px)}
 
 
-    .classified{position:relative;border:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,#17181a,#0f1012);padding:clamp(28px,4vw,56px);overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.35)}
-    .classified::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(213,74,58,.12),transparent 28%),repeating-linear-gradient(0deg,transparent 0 27px,rgba(255,255,255,.024) 28px 29px);pointer-events:none}
-    .classified::after{content:"";position:absolute;inset:0;border:1px solid transparent;box-shadow:inset 0 0 50px rgba(213,74,58,.04);pointer-events:none}
-    .classified-head{position:relative;display:flex;justify-content:space-between;gap:24px;align-items:center;padding-bottom:26px;border-bottom:1px solid var(--line-soft)}
-    .stamp{border:3px solid var(--red);color:var(--red);font:700 clamp(17px,2vw,30px)/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:10px 13px;transform:rotate(-5deg);opacity:.92}
-    .classified-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:28px;border:1px solid var(--line-soft)}
-    .field{padding:16px 18px;border-bottom:1px solid var(--line-soft);display:grid;grid-template-columns:110px 1fr;gap:16px;font:500 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.05em}.field:nth-last-child(-n+2){border-bottom:0}.field:nth-child(odd){border-right:1px solid var(--line-soft)}
-    .field dt{color:var(--muted)}.field dd{margin:0;color:#d8d5ce}
-    .classified-foot{position:relative;margin-top:24px;display:flex;justify-content:space-between;gap:20px;align-items:end;color:var(--muted);font:500 10px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase}
-    .barcode{width:130px;height:34px;background:repeating-linear-gradient(90deg,#85817a 0 2px,transparent 2px 5px,#85817a 5px 6px,transparent 6px 9px);opacity:.25}
 
     .record-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:28px 56px;margin-bottom:clamp(28px,3.4vw,48px)}
     .record-title{font:400 clamp(44px,7.4vw,112px)/.86 var(--display);letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 0;text-wrap:balance}
@@ -184,17 +174,63 @@
     .cast-list button[aria-pressed="true"]{border-color:var(--red)}
     .cast-list button[aria-pressed="true"] img{filter:none}
     .cast-list em{font-style:normal}.cast-list span{white-space:nowrap;position:absolute;left:10px;bottom:8px;font:600 10px/1 var(--mono);letter-spacing:.14em;color:var(--ivory);text-shadow:0 1px 6px rgba(0,0,0,.8)}
-    .px-dossier{position:relative;padding-top:clamp(48px,5vw,72px);padding-bottom:clamp(72px,8vw,120px);display:grid;grid-template-columns:minmax(180px,280px) minmax(0,1fr);gap:clamp(36px,7vw,100px);align-items:start}
-    .px-dossier .section-copy{margin-top:14px}
 
-    .company-panel{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border:1px solid var(--line-soft)}
-    .company-panel .registry{border:0;padding:clamp(10px,2vw,20px) clamp(24px,3.4vw,40px)}
-    .company-panel .registry-row{grid-template-columns:150px 1fr}
-    .contact-stack{border-left:1px solid var(--line-soft);display:grid}
-    .contact-stack .contact-item{min-height:0;gap:14px}
-    .talk{margin:0;font:400 clamp(34px,4vw,60px)/.9 var(--display);letter-spacing:-.05em;text-transform:uppercase}
-    .contact-stack .contact-item+.contact-item{border-left:0;border-top:1px solid var(--line-soft)}
 
+    /* Project dossier — editorial classified file, not a UI card */
+    .px-dossier{position:relative;padding-top:clamp(58px,6vw,88px);padding-bottom:clamp(88px,9vw,136px);display:block}
+    .dossier{position:relative;isolation:isolate;min-height:clamp(540px,52vw,730px);overflow:hidden;border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft);padding:clamp(34px,4.5vw,64px) 0 clamp(30px,4vw,56px)}
+    .dossier::before{content:"X";position:absolute;right:-.035em;top:50%;z-index:-2;transform:translateY(-52%);font:400 clamp(340px,48vw,720px)/.72 var(--display);letter-spacing:-.1em;color:rgba(213,74,58,.045);text-shadow:0 0 120px rgba(213,74,58,.035);pointer-events:none}
+    .dossier::after{content:"";position:absolute;inset:0;z-index:-3;background:repeating-linear-gradient(0deg,transparent 0 31px,rgba(241,239,232,.026) 32px 33px),linear-gradient(100deg,rgba(255,255,255,.018),transparent 34%,rgba(213,74,58,.035) 78%,transparent);pointer-events:none}
+    .dossier-top{display:grid;grid-template-columns:1fr auto;gap:20px;align-items:start;padding-bottom:clamp(30px,4vw,48px);border-bottom:1px solid var(--line-soft)}
+    .dossier-kicker{display:flex;align-items:center;gap:14px;font:600 10px/1 var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--muted)}
+    .dossier-kicker::before{content:"";width:34px;height:1px;background:var(--red)}
+    .dossier-file{font:500 10px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ash);text-align:right}
+    .dossier-main{display:grid;grid-template-columns:minmax(240px,.8fr) minmax(0,1.2fr);gap:clamp(44px,8vw,120px);align-items:start;padding-top:clamp(42px,5vw,70px)}
+    .dossier-title-wrap{position:relative;min-height:280px}
+    .dossier-title{margin:0;font:400 clamp(68px,10vw,148px)/.78 var(--display);letter-spacing:-.065em;text-transform:uppercase}
+    .dossier-title .x{display:block;color:var(--red);text-shadow:0 0 44px rgba(213,74,58,.2)}
+    .dossier-status{margin-top:30px;display:inline-flex;align-items:center;gap:10px;padding:9px 12px;border:1px solid rgba(213,74,58,.34);font:600 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:#e6e2da;background:rgba(213,74,58,.045)}
+    .dossier-status::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 16px rgba(213,74,58,.8)}
+    .stamp{position:absolute;left:46%;top:24px;z-index:2;border:3px solid var(--red);color:var(--red);font:700 clamp(16px,2vw,29px)/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;padding:10px 14px;transform:rotate(-6deg);opacity:.9;mix-blend-mode:screen}
+    .dossier-data{margin:0;border-top:1px solid var(--line-soft)}
+    .dossier-row{display:grid;grid-template-columns:150px minmax(0,1fr);gap:28px;padding:19px 0;border-bottom:1px solid var(--line-soft)}
+    .dossier-row dt{font:500 10px/1.45 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+    .dossier-row dd{margin:0;font:600 12px/1.5 var(--mono);letter-spacing:.07em;text-transform:uppercase;color:#dedbd4}
+    .redacted{display:inline-block;vertical-align:middle;height:.82em;border-radius:1px;background:linear-gradient(90deg,#242427,#35363a,#242427);box-shadow:inset 0 0 0 1px rgba(255,255,255,.025)}
+    .redacted.r1{width:min(210px,75%)}.redacted.r2{width:min(310px,92%)}
+    .dossier-foot{display:grid;grid-template-columns:1fr auto;gap:26px;align-items:end;margin-top:clamp(34px,4vw,54px);padding-top:20px;border-top:1px solid rgba(241,239,232,.07);font:500 10px/1.55 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+    .dossier-serial{display:flex;align-items:center;gap:18px;white-space:nowrap}
+    .dossier-bars{width:104px;height:22px;background:repeating-linear-gradient(90deg,rgba(183,179,170,.35) 0 2px,transparent 2px 5px);opacity:.45}
+    .dossier-mark{position:absolute;width:12px;height:12px;border-color:rgba(241,239,232,.16)}
+    .dossier-mark.a{left:0;top:22px;border-left:1px solid;border-top:1px solid}.dossier-mark.b{right:0;bottom:22px;border-right:1px solid;border-bottom:1px solid}
+    .dossier-title{font-size:clamp(52px,6vw,88px)}
+    /* Company — editorial corporate profile */
+    .company-section{padding:clamp(88px,9vw,140px) 0;border-top:1px solid var(--line-soft)}
+    .company-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:36px;align-items:end;padding-bottom:clamp(38px,5vw,68px);border-bottom:1px solid var(--line-soft)}
+    .company-word{margin:12px 0 0;font:400 clamp(60px,9.5vw,136px)/.8 var(--display);letter-spacing:-.065em;text-transform:uppercase}
+    .company-word small{display:block;margin-top:18px;font:500 clamp(13px,1.2vw,17px)/1.2 var(--mono);letter-spacing:.18em;color:var(--ash)}
+    .company-meta{display:grid;gap:8px;text-align:right;font:500 10px/1.45 var(--mono);letter-spacing:.15em;text-transform:uppercase;color:var(--muted)}
+    .company-meta b{color:var(--ivory);font-weight:600}
+    .company-body{display:grid;grid-template-columns:minmax(230px,.62fr) minmax(0,1.38fr);gap:clamp(46px,8vw,120px);padding-top:clamp(42px,5vw,70px)}
+    .company-lede{max-width:24ch;margin:0;font-size:clamp(20px,2vw,28px);line-height:1.35;letter-spacing:-.025em;color:#d8d5cd}
+    .registry-clean{margin:0;border-top:1px solid var(--line-soft)}
+    .registry-clean .registry-row{grid-template-columns:180px minmax(0,1fr);padding:18px 0}
+    .registry-clean .registry-row:last-child{border-bottom:1px solid var(--line-soft)}
+
+    /* Contact — closing statement / CTA */
+    .contact-section{position:relative;overflow:hidden;padding:clamp(88px,10vw,156px) 0;border-top:1px solid var(--line-soft);background:linear-gradient(180deg,#09090a,#0d0d0f)}
+    .contact-section::before{content:"X";position:absolute;right:-.07em;bottom:-.16em;font:400 clamp(310px,48vw,700px)/.72 var(--display);letter-spacing:-.1em;color:rgba(213,74,58,.035);pointer-events:none}
+    .contact-grid{position:relative;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(300px,.85fr);gap:clamp(50px,9vw,140px);align-items:end}
+    .contact-title{margin:16px 0 0;font:400 clamp(74px,12vw,172px)/.78 var(--display);letter-spacing:-.07em;text-transform:uppercase}
+    .contact-title .dot{color:var(--red)}
+    .contact-arrow{display:inline-block;margin-left:.12em;font-size:.5em;vertical-align:.3em;color:var(--red);transition:transform .25s ease}
+    .contact-title{white-space:nowrap}
+    .contact-title-link:hover .contact-arrow{transform:translateX(10px)}
+    .contact-details{display:grid;border-top:1px solid var(--line-soft)}
+    .contact-row{padding:22px 0 26px;border-bottom:1px solid var(--line-soft)}
+    .contact-label{display:block;margin-bottom:12px;font:500 10px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+    .contact-value{font-size:clamp(18px,2vw,28px);line-height:1.42;letter-spacing:-.03em;color:#dedbd4}
+    .contact-value a{transition:color .2s}.contact-value a:hover{color:var(--red)}
     footer{border-top:1px solid var(--line-soft);padding:26px 0 34px;background:#09090a}
     .footer-row{display:flex;justify-content:space-between;gap:30px;align-items:center;font:500 10px/1.5 var(--mono);letter-spacing:.09em;color:#77736d}.footer-logo{height:12px;width:auto}
 
@@ -203,16 +239,22 @@
     @media (max-width:1400px){.record-head{grid-template-columns:1fr}}
     @media (max-width:900px){
       header{height:68px}.hero{padding-top:68px}.hero::before{inset:68px 0 0}.hero-media{inset:68px 0 0}.brand{min-width:0}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:#0b0c0e;border-bottom:1px solid var(--line-soft);padding:20px var(--pad) 26px;flex-direction:column;align-items:flex-start;gap:20px}.nav-links.open{display:flex}.menu-btn{display:flex}
-      .hero-foot{grid-template-columns:1fr}.record-head{grid-template-columns:1fr}.carousel-viewport{aspect-ratio:16/10}.next-title{justify-self:start}.px-head{grid-template-columns:1fr}.cast{grid-template-columns:1fr}.cast-list{grid-template-rows:none;grid-template-columns:repeat(5,minmax(0,1fr))}.cast-list button{aspect-ratio:3/4;height:auto}.px-dossier{grid-template-columns:1fr;gap:28px;margin-top:0}.company-panel{grid-template-columns:1fr}.contact-stack{border-left:0;border-top:1px solid var(--line-soft)}
-      .section-grid{grid-template-columns:1fr;gap:34px}.section-intro{max-width:620px}.classified-grid{grid-template-columns:1fr}.field:nth-child(odd){border-right:0}.field:nth-last-child(-n+2){border-bottom:1px solid var(--line-soft)}.field:last-child{border-bottom:0}
+      .hero-foot{grid-template-columns:1fr}.record-head{grid-template-columns:1fr}.carousel-viewport{aspect-ratio:16/10}.next-title{justify-self:start}.px-head{grid-template-columns:1fr}.cast{grid-template-columns:1fr}.cast-list{grid-template-rows:none;grid-template-columns:repeat(5,minmax(0,1fr))}.cast-list button{aspect-ratio:3/4;height:auto}
+      .section-grid{grid-template-columns:1fr;gap:34px}.section-intro{max-width:620px}
       .contact-panel{grid-template-columns:1fr}.contact-item+ .contact-item{border-left:0;border-top:1px solid var(--line-soft)}
     }
     @media (max-width:560px){
       :root{--pad:20px}.brand-logo{height:14px}
-      .hero-inner{padding-top:64px}.hero-word{margin-top:22px}.hero-kicker{font-size:15px;letter-spacing:.06em}.px-title{font-size:clamp(40px,14.5vw,64px)}.hero-inner{padding-bottom:76px}.cast-stage{aspect-ratio:4/5}.cast-stage img{object-position:45% center}.cast-bio{font-size:13px}.cast-list em{display:none}.cast-list span{left:8px}.cast-role{font-size:10px;letter-spacing:.12em}.cast-name{font-size:30px}.company-panel .registry{padding:6px 18px}.company-panel .registry-row{grid-template-columns:1fr}
-      .section{padding:70px 0}.section-title{font-size:36px}.classified{padding:24px;min-height:0}.stamp{font-size:14px;border-width:2px;padding:8px 10px}.field{grid-template-columns:92px 1fr;padding:13px 12px}.classified-foot{align-items:center}.barcode{width:92px}
+      .hero-inner{padding-top:64px}.hero-word{margin-top:22px}.hero-kicker{font-size:15px;letter-spacing:.06em}.px-title{font-size:clamp(40px,14.5vw,64px)}.hero-inner{padding-bottom:76px}.cast-stage{aspect-ratio:4/5}.cast-stage img{object-position:45% center}.cast-bio{font-size:13px}.cast-list em{display:none}.cast-list span{left:8px}.cast-role{font-size:10px;letter-spacing:.12em}.cast-name{font-size:30px}
+      .section{padding:70px 0}.section-title{font-size:36px}
       .carousel-viewport{aspect-ratio:4/3}.carousel-btn{width:38px;height:38px}.carousel-btn.prev{left:10px}.carousel-btn.next{right:10px}.record-meta{grid-template-columns:1fr 1fr 1fr}.record-meta div{padding-right:8px;margin-right:0}.record-meta dd{white-space:normal;font-size:11px}.tm-note{font-size:10px}
       .registry-row{grid-template-columns:1fr;gap:6px;padding:16px 0}.registry dd{font-size:13px}.contact-value{font-size:17px}.footer-row{align-items:flex-start;flex-direction:column;gap:8px}
+    }
+    @media (max-width:900px){
+      .dossier-main{grid-template-columns:1fr;gap:22px}.dossier-title-wrap{min-height:0}.stamp{left:auto;right:3%;top:92px}.company-head{grid-template-columns:1fr}.company-meta{text-align:left;grid-auto-flow:column;justify-content:start;gap:20px}.company-body{grid-template-columns:1fr;gap:34px}.contact-grid{grid-template-columns:1fr}.contact-details{max-width:660px}.contact-title{font-size:clamp(76px,18vw,142px)}
+    }
+    @media (max-width:560px){
+      .dossier{min-height:0;padding-top:28px}.dossier-top{grid-template-columns:1fr;gap:12px}.dossier-file{text-align:left}.dossier::before{font-size:340px;right:-.18em;top:39%}.stamp{position:relative;display:inline-block;left:auto;right:auto;top:auto;margin:26px 0 0 54%;font-size:14px;border-width:2px;padding:8px 10px}.dossier-main{padding-top:24px}.dossier-title{font-size:clamp(44px,14vw,74px)}.dossier-row{grid-template-columns:98px 1fr;gap:14px;padding:15px 0}.dossier-row dd{font-size:10px}.dossier-foot{grid-template-columns:1fr}.dossier-serial{justify-content:space-between}.company-word{font-size:58px}.company-word small{font-size:11px}.company-body{padding-top:34px}.company-lede{font-size:20px}.registry-clean .registry-row{grid-template-columns:1fr;gap:6px}.contact-title{font-size:76px}.contact-arrow{display:block;margin:20px 0 0;font-size:.55em}.contact-value{font-size:18px}
     }
     @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
   </style>
@@ -278,18 +320,31 @@
         </div>
       </div>
       <div class="shell px-dossier">
-        <div class="section-intro reveal"><span class="eyebrow">Project file</span><p class="section-copy">What we can share today. More will follow as development continues.</p></div>
-        <article class="classified reveal" id="classifiedCard">
-          <div class="classified-head"><div class="eyebrow">Internal File / 001-X</div><div class="stamp">Classified</div></div>
-          <dl class="classified-grid">
-            <div class="field"><dt>Status</dt><dd>In development</dd></div>
-            <div class="field"><dt>Codename</dt><dd>Project X</dd></div>
-            <div class="field"><dt>Genre</dt><dd>Anime-style · Side-scrolling defense</dd></div>
-            <div class="field"><dt>Platform</dt><dd>Mobile · PC · H5</dd></div>
-            <div class="field"><dt>Launch</dt><dd>Q4 2027</dd></div>
-            <div class="field"><dt>Access</dt><dd>Restricted</dd></div>
-          </dl>
-          <div class="classified-foot"><div>Further details will be announced when ready.</div><div class="barcode" aria-hidden="true"></div></div>
+        <article class="dossier reveal" id="classifiedCard" aria-labelledby="dossier-title">
+          <i class="dossier-mark a" aria-hidden="true"></i><i class="dossier-mark b" aria-hidden="true"></i>
+          <div class="dossier-top">
+            <div class="dossier-kicker">01 / Project archive</div>
+            <div class="dossier-file">File 001-X · Internal development record</div>
+          </div>
+          <div class="stamp" aria-hidden="true">Classified</div>
+          <div class="dossier-main">
+            <div class="dossier-title-wrap">
+              <h3 class="dossier-title" id="dossier-title">Project <span class="x">X</span></h3>
+              <div class="dossier-status">Restricted access</div>
+            </div>
+            <dl class="dossier-data">
+              <div class="dossier-row"><dt>Status</dt><dd>In development</dd></div>
+              <div class="dossier-row"><dt>Codename</dt><dd>Project X</dd></div>
+              <div class="dossier-row"><dt>Genre</dt><dd>Anime-style · Side-scrolling defense</dd></div>
+              <div class="dossier-row"><dt>Platform</dt><dd>Mobile · PC · H5</dd></div>
+              <div class="dossier-row"><dt>Launch</dt><dd>Q4 2027</dd></div>
+              <div class="dossier-row"><dt>Internal notes</dt><dd><span class="redacted r2" aria-label="Redacted"></span></dd></div>
+            </dl>
+          </div>
+          <div class="dossier-foot">
+            <div>Further details will be announced when ready.</div>
+            <div class="dossier-serial"><span>001-X / 2027</span><span class="dossier-bars" aria-hidden="true"></span></div>
+          </div>
         </article>
       </div>
     </section>
@@ -323,20 +378,37 @@
       </div>
     </section>
 
-    <section class="section" id="company" aria-labelledby="company-title">
-      <div class="shell section-grid">
-        <div class="section-intro reveal"><span class="index">03 /</span><h2 class="section-title" id="company-title">Company</h2><p class="section-copy">ZERO X AND PTE. LTD. is registered in Singapore. For business inquiries, get in touch.</p></div>
-        <div class="company-panel reveal">
-          <dl class="registry">
+    <section class="company-section" id="company" aria-labelledby="company-title">
+      <div class="shell">
+        <div class="company-head reveal">
+          <div>
+            <span class="index">03 / Company</span>
+            <h2 class="company-word" id="company-title">ZERO X AND<small>PTE. LTD.</small></h2>
+          </div>
+          <div class="company-meta"><span>Singapore</span><b>Est. 2021</b></div>
+        </div>
+        <div class="company-body">
+          <p class="company-lede reveal">Independent game development &amp; publishing company.</p>
+          <dl class="registry registry-clean reveal">
             <div class="registry-row"><dt>Legal Name</dt><dd>ZERO X AND PTE. LTD.</dd></div>
             <div class="registry-row"><dt>Incorporated</dt><dd>02 Nov 2021</dd></div>
             <div class="registry-row"><dt>Primary Activity</dt><dd>Publishing of games software/applications (SSIC 58201)</dd></div>
           </dl>
-          <div class="contact-stack" id="contact">
-            <div class="contact-item contact-head"><span class="contact-label">Contact</span><p class="talk">Let&rsquo;s talk.</p></div>
-            <div class="contact-item"><span class="contact-label">Email</span><div class="contact-value"><a href="mailto:baht@0xand.com">baht@0xand.com</a></div></div>
-            <div class="contact-item"><span class="contact-label">Office</span><div class="contact-value">38 Beach Road, #17-12,<br>South Beach Tower, Singapore 189767</div></div>
-          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact-section" id="contact" aria-labelledby="contact-title">
+      <div class="shell contact-grid">
+        <div class="reveal">
+          <span class="index">04 / Contact</span>
+          <a class="contact-title-link" href="mailto:baht@0xand.com" aria-label="Email ZEROXAND">
+            <h2 class="contact-title" id="contact-title">Let’s<br>talk<span class="dot">.</span><span class="contact-arrow" aria-hidden="true">→</span></h2>
+          </a>
+        </div>
+        <div class="contact-details reveal">
+          <div class="contact-row"><span class="contact-label">Business inquiries</span><div class="contact-value"><a href="mailto:baht@0xand.com">baht@0xand.com</a></div></div>
+          <div class="contact-row"><span class="contact-label">Singapore office</span><div class="contact-value">38 Beach Road, #17-12<br>South Beach Tower<br>Singapore 189767</div></div>
         </div>
       </div>
     </section>

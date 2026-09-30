@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="en" class="no-js">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <title>ZEROXAND — Game Development & Publishing</title>
+  <meta name="description" content="ZEROXAND is a Singapore-based game developer and publisher creating games for players around the world.">
+  <meta name="theme-color" content="#0a0a0b">
+  <meta property="og:title" content="ZEROXAND — Game Development & Publishing">
+  <meta property="og:description" content="We develop and publish games for players around the world.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://zeroxand.com/">
+  <meta property="og:site_name" content="ZEROXAND">
+  <meta name="twitter:card" content="summary_large_image">
+  <link rel="canonical" href="https://zeroxand.com/">
+  <link rel="icon" type="image/png" href="assets/brand/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=IBM+Plex+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0a0a0b;
+      --bg-2:#0f1012;
+      --panel:#131417;
+      --line:#2a2b2f;
+      --line-soft:rgba(241,239,232,.12);
+      --ivory:#f1efe8;
+      --ash:#b7b3aa;
+      --muted:#817e78;
+      --red:#d54a3a;
+      --red-2:#9f3026;
+      --max:1280px;
+      --pad:clamp(20px,4vw,64px);
+      --mono:"IBM Plex Mono", monospace;
+      --display:"Archivo Black", sans-serif;
+      --body:"Inter", sans-serif;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth;background:var(--bg)}
+    body{margin:0;background:var(--bg);color:var(--ivory);font-family:var(--body);overflow-x:hidden;line-height:1.5}
+    body::before{
+      content:"";position:fixed;inset:0;pointer-events:none;z-index:100;
+      background:
+        linear-gradient(rgba(255,255,255,.015) 1px,transparent 1px),
+        linear-gradient(90deg,rgba(255,255,255,.012) 1px,transparent 1px);
+      background-size:64px 64px;mask-image:linear-gradient(to bottom,#000,transparent 90%);opacity:.55
+    }
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+    button,input{font:inherit}
+    .skip{position:absolute;left:12px;top:-50px;background:var(--ivory);color:var(--bg);padding:10px 14px;z-index:9999}
+    .skip:focus{top:12px}
+    :focus-visible{outline:2px solid var(--red);outline-offset:4px}
+
+    .shell{width:min(var(--max),calc(100% - 2*var(--pad)));margin-inline:auto}
+    .eyebrow{font:600 11px/1.2 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
+    .index{font:500 11px/1 var(--mono);letter-spacing:.14em;color:var(--red)}
+    .section{position:relative;border-top:1px solid var(--line-soft);padding:clamp(72px,8vw,120px) 0}
+    .section-grid{display:grid;grid-template-columns:minmax(180px,280px) minmax(0,1fr);gap:clamp(36px,7vw,100px)}
+    .section-title{font:400 clamp(30px,4vw,58px)/.98 var(--display);letter-spacing:-.045em;text-transform:uppercase;margin:12px 0 18px}
+    .section-copy{margin:0;color:var(--ash);max-width:30ch;font-size:15px}
+
+    header{position:fixed;inset:0 0 auto 0;height:78px;z-index:80;border-bottom:1px solid rgba(255,255,255,.08);background:linear-gradient(to bottom,rgba(10,10,11,.92),rgba(10,10,11,.62));backdrop-filter:blur(14px)}
+    .nav{height:100%;display:flex;align-items:center;justify-content:space-between;gap:32px}
+    .brand{display:flex;align-items:center;gap:14px;min-width:190px}
+    .brand-logo{display:block;height:17px;width:auto}
+    .nav-links{display:flex;align-items:center;gap:34px;font:600 11px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase}
+    .nav-links a{color:#dedbd4;position:relative}
+    .nav-links a::after{content:"";position:absolute;left:0;right:100%;bottom:-8px;height:1px;background:var(--red);transition:right .25s ease}
+    .nav-links a:hover::after{right:0}
+    .menu-btn{display:none;width:42px;height:42px;border:1px solid var(--line-soft);background:#111214;color:var(--ivory);align-items:center;justify-content:center;cursor:pointer}
+    .menu-btn span,.menu-btn span::before,.menu-btn span::after{display:block;width:18px;height:1px;background:currentColor;position:relative;transition:.25s}
+    .menu-btn span::before,.menu-btn span::after{content:"";position:absolute;left:0}.menu-btn span::before{top:-6px}.menu-btn span::after{top:6px}
+
+    .hero{padding-top:78px;position:relative;isolation:isolate;overflow:hidden}
+    .hero::before{content:"";position:absolute;inset:78px 0 0;background:radial-gradient(ellipse at 82% 10%,rgba(213,74,58,.2),transparent 40%),linear-gradient(125deg,transparent 0 58%,rgba(255,255,255,.02) 58% 59%,transparent 59%);z-index:-1}
+    .hero-inner{width:min(var(--max),calc(100% - 2*var(--pad)));margin-inline:auto;padding:clamp(72px,8vw,120px) 0 clamp(44px,4.5vw,64px)}
+    .hero-word{margin:30px 0 0;line-height:0;filter:drop-shadow(0 14px 44px rgba(0,0,0,.55))}
+    .hero-logo{display:block;width:min(100%,1120px);height:auto}
+    .js .hero-logo{animation:wipe 1.1s cubic-bezier(.7,0,.2,1) .15s both}
+    @keyframes wipe{from{clip-path:inset(0 100% 0 0);opacity:.2}to{clip-path:inset(0 0 0 0);opacity:1}}
+    /* Hero background reel: two muted Project X teasers, played in turn */
+    .hero-media{position:absolute;inset:78px 0 0;z-index:-2;background:#070708 url("assets/video/px-teaser-poster.jpg") center/cover no-repeat}
+    .hero-media video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity 1.2s ease}
+    .hero-media video.on{opacity:1}
+    .hero-media::after{content:"";position:absolute;inset:0;background:
+        linear-gradient(90deg,rgba(10,10,11,.88) 0%,rgba(10,10,11,.62) 45%,rgba(10,10,11,.5) 100%),
+        linear-gradient(to bottom,rgba(10,10,11,.35) 0%,transparent 30%,rgba(10,10,11,.6) 78%,var(--bg) 100%)}
+    .reel-ctrl{position:absolute;right:calc((100% - min(var(--max),100% - 2*var(--pad)))/2);bottom:18px;z-index:2;display:flex;align-items:center;gap:10px;padding:8px 12px;border:1px solid var(--line-soft);background:rgba(10,10,11,.6);color:var(--ash);font:500 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;cursor:pointer;backdrop-filter:blur(6px)}
+    .reel-ctrl:hover{color:var(--ivory);border-color:var(--red)}
+    .reel-ctrl svg{width:12px;height:12px;fill:currentColor}
+    .reel-ctrl .i-play{display:none}.reel-ctrl[aria-pressed="true"] .i-play{display:block}.reel-ctrl[aria-pressed="true"] .i-pause{display:none}
+    .hero-scan{position:absolute;left:0;right:0;top:78px;height:2px;background:linear-gradient(90deg,transparent,rgba(213,74,58,.9) 30%,rgba(241,239,232,.8) 50%,rgba(213,74,58,.9) 70%,transparent);box-shadow:0 0 24px rgba(213,74,58,.6);opacity:0;pointer-events:none}
+    .js .hero-scan{animation:scanOnce 1.4s cubic-bezier(.4,0,.2,1) 1.05s both}
+    @keyframes scanOnce{0%{opacity:0;transform:translateY(0)}10%{opacity:1}85%{opacity:.8}100%{opacity:0;transform:translateY(var(--scan-h,700px))}}
+    .hero-foot{margin-top:clamp(40px,5vw,72px);padding-top:28px;border-top:1px solid var(--line-soft);display:grid;grid-template-columns:minmax(0,1fr) auto;gap:32px 48px;align-items:end}
+    .hero-kicker{margin:0;max-width:560px;font:600 clamp(17px,1.6vw,22px)/1.45 var(--body);letter-spacing:.08em;text-transform:uppercase}
+    .hero-meta{margin-top:22px;display:flex;flex-wrap:wrap;gap:12px 26px;color:var(--muted);font:500 10px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase}
+    .next-title{display:grid;grid-template-columns:auto auto;align-items:center;gap:6px 28px;padding:20px 24px;border:1px solid var(--line-soft);background:rgba(19,20,23,.7);transition:border-color .2s}
+    .next-title:hover{border-color:var(--red)}
+    .next-title .nt-label{grid-column:1/-1;font:500 10px/1 var(--mono);letter-spacing:.18em;text-transform:uppercase;color:var(--ash)}
+    .next-title .nt-name{font:400 clamp(26px,2.6vw,38px)/1 var(--display);letter-spacing:-.04em;text-transform:uppercase}
+    .next-title .nt-name .x{color:var(--red)}
+    .next-title .nt-when{font:600 11px/1 var(--mono);letter-spacing:.16em;color:var(--ivory);display:flex;align-items:center;gap:10px}
+    .next-title .nt-when::after{content:"→";color:var(--red);transition:transform .2s}
+    .next-title:hover .nt-when::after{transform:translateX(4px)}
+
+
+    .classified{position:relative;border:1px solid rgba(255,255,255,.14);background:linear-gradient(135deg,#17181a,#0f1012);padding:clamp(28px,4vw,56px);overflow:hidden;box-shadow:0 18px 60px rgba(0,0,0,.35)}
+    .classified::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(213,74,58,.12),transparent 28%),repeating-linear-gradient(0deg,transparent 0 27px,rgba(255,255,255,.024) 28px 29px);pointer-events:none}
+    .classified::after{content:"";position:absolute;inset:0;border:1px solid transparent;box-shadow:inset 0 0 50px rgba(213,74,58,.04);pointer-events:none}
+    .classified-head{position:relative;display:flex;justify-content:space-between;gap:24px;align-items:center;padding-bottom:26px;border-bottom:1px solid var(--line-soft)}
+    .stamp{border:3px solid var(--red);color:var(--red);font:700 clamp(17px,2vw,30px)/1 var(--mono);letter-spacing:.05em;text-transform:uppercase;padding:10px 13px;transform:rotate(-5deg);opacity:.92}
+    .classified-grid{position:relative;display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:28px;border:1px solid var(--line-soft)}
+    .field{padding:16px 18px;border-bottom:1px solid var(--line-soft);display:grid;grid-template-columns:110px 1fr;gap:16px;font:500 11px/1.4 var(--mono);text-transform:uppercase;letter-spacing:.05em}.field:nth-last-child(-n+2){border-bottom:0}.field:nth-child(odd){border-right:1px solid var(--line-soft)}
+    .field dt{color:var(--muted)}.field dd{margin:0;color:#d8d5ce}
+    .classified-foot{position:relative;margin-top:24px;display:flex;justify-content:space-between;gap:20px;align-items:end;color:var(--muted);font:500 10px/1.5 var(--mono);letter-spacing:.09em;text-transform:uppercase}
+    .barcode{width:130px;height:34px;background:repeating-linear-gradient(90deg,#85817a 0 2px,transparent 2px 5px,#85817a 5px 6px,transparent 6px 9px);opacity:.25}
+
+    .record-head{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:28px 56px;margin-bottom:clamp(28px,3.4vw,48px)}
+    .record-title{font:400 clamp(44px,7.4vw,112px)/.86 var(--display);letter-spacing:-.05em;text-transform:uppercase;margin:14px 0 0;text-wrap:balance}
+    .record-meta{margin:0;display:grid;grid-template-columns:repeat(3,auto);gap:0;border-top:1px solid var(--line-soft)}
+    .record-meta div{padding:14px 22px 0 0;margin-right:22px}
+    .record-meta dt{font:500 10px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+    .record-meta dd{margin:0;font:600 12px/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ivory);white-space:nowrap}
+    .carousel{position:relative;outline:none}
+    .carousel-viewport{position:relative;overflow:hidden;aspect-ratio:21/10;background:#070708;touch-action:pan-y}
+    .carousel-track{display:flex;height:100%;transition:transform .55s cubic-bezier(.2,.7,.2,1)}
+    .carousel-track.dragging{transition:none}
+    .slide{position:relative;flex:0 0 100%;height:100%;margin:0;overflow:hidden}
+    .slide .fill{position:absolute;inset:-24px;width:calc(100% + 48px);height:calc(100% + 48px);max-width:none;object-fit:cover;filter:blur(24px) brightness(.45) saturate(1.1)}
+    .slide .shot{position:relative;width:100%;height:100%;object-fit:contain;user-select:none;-webkit-user-drag:none}
+    .carousel-btn{position:absolute;top:50%;transform:translateY(-50%);width:46px;height:46px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(241,239,232,.22);background:rgba(10,10,11,.62);color:var(--ivory);cursor:pointer;backdrop-filter:blur(8px);transition:background .2s,border-color .2s}
+    .carousel-btn:hover{background:var(--red);border-color:var(--red)}
+    @media (hover:hover){.carousel-btn{opacity:0;transition:opacity .25s,background .2s,border-color .2s}.carousel:hover .carousel-btn,.carousel:focus-within .carousel-btn{opacity:1}}
+    .carousel-btn svg{width:18px;height:18px}
+    .carousel-btn.prev{left:16px}.carousel-btn.next{right:16px}
+    .carousel-bar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:10px 0 0}
+    .carousel-dots{display:flex;gap:6px;flex-wrap:wrap}
+    .carousel-dots button{width:30px;height:30px;padding:0;border:0;background:none;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .carousel-dots button::before{content:"";width:8px;height:8px;border:1px solid var(--ash);transition:background .2s,border-color .2s,width .25s}
+    .carousel-dots button[aria-current="true"]::before{width:22px;background:var(--red);border-color:var(--red)}
+    .carousel-count{font:500 11px/1 var(--mono);letter-spacing:.14em;color:var(--muted);font-variant-numeric:tabular-nums}
+    .tm-note{font-size:11px;color:#77736d;margin:12px 0 0}
+
+    .registry{border-top:1px solid var(--line-soft);border-bottom:1px solid var(--line-soft)}
+    .registry-row{display:grid;grid-template-columns:minmax(160px,.45fr) 1fr;gap:30px;padding:19px 0;border-bottom:1px solid var(--line-soft)}.registry-row:last-child{border-bottom:0}
+    .registry dt{font:500 10px/1.4 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}.registry dd{margin:0;font-size:14px;color:#dedbd4}
+
+    .contact-panel{display:grid;grid-template-columns:1fr 1fr;border:1px solid var(--line-soft)}
+    .contact-item{padding:clamp(26px,4vw,46px);min-height:160px;display:flex;flex-direction:column;justify-content:space-between}.contact-item+ .contact-item{border-left:1px solid var(--line-soft)}
+    .contact-label{font:500 10px/1 var(--mono);letter-spacing:.13em;text-transform:uppercase;color:var(--muted)}
+    .contact-value{font-size:clamp(17px,2vw,25px);letter-spacing:-.02em}.contact-value a:hover{color:var(--red)}
+
+
+    /* Project X stage: world background + character showcase (assets/project-x/) */
+    .px{position:relative;border-top:1px solid var(--line-soft)}
+    .px-stage{position:relative;isolation:isolate;overflow:hidden;padding-bottom:clamp(40px,5vw,72px)}
+    .px-bg{position:absolute;inset:0;z-index:-2}
+    .px-bg img{width:100%;height:100%;object-fit:cover;object-position:center 30%}
+    .px-bg::after{content:"";position:absolute;inset:0;background:
+        linear-gradient(to bottom,rgba(10,10,11,.82) 0%,rgba(10,10,11,.45) 30%,rgba(10,10,11,.7) 62%,var(--bg) 100%),
+        linear-gradient(90deg,rgba(10,10,11,.75),transparent 55%)}
+    .px-head{padding-top:clamp(64px,7vw,104px);display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:24px 48px}
+    .px-title{font:400 clamp(60px,9.5vw,144px)/.84 var(--display);letter-spacing:-.065em;text-transform:uppercase;margin:14px 0 0;text-shadow:0 8px 40px rgba(0,0,0,.5)}
+    .px-title .x{color:var(--red);text-shadow:0 0 50px rgba(213,74,58,.45)}
+    .px-lede{margin:0 0 10px;max-width:34ch;color:#d6d2ca;font-size:15px}
+
+    .cast{margin-top:clamp(36px,4.5vw,64px);display:grid;grid-template-columns:minmax(0,1fr) clamp(150px,15vw,210px);gap:clamp(10px,1.2vw,16px)}
+    .cast-stage{position:relative;margin:0;aspect-ratio:16/9;overflow:hidden;border:1px solid var(--line-soft);background:#070708}
+    .cast-stage img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transform:scale(1.03);transition:opacity .5s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+    .cast-stage img.on{opacity:1;transform:none}
+    .cast-stage figcaption{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:end;gap:16px;padding:clamp(40px,4vw,64px) clamp(18px,2.4vw,30px) clamp(18px,2.4vw,30px);background:linear-gradient(transparent,rgba(10,10,11,.94) 65%);pointer-events:none}
+    .cast-name{font:400 clamp(30px,3.6vw,56px)/.9 var(--display);letter-spacing:-.03em;text-transform:uppercase}
+    .cast-id{display:flex;flex-direction:column;gap:10px;min-width:0}
+    .cast-bio{max-width:44ch;font-size:14px;line-height:1.5;color:#d6d2ca}
+    .cast-role{align-self:flex-start;font:600 11px/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--ivory);background:rgba(10,10,11,.78);border-left:2px solid var(--red);padding:7px 10px}
+    .cast-num{white-space:nowrap;font:600 11px/1 var(--mono);letter-spacing:.16em;color:var(--ash);font-variant-numeric:tabular-nums}
+    .cast-num b{color:var(--red)}
+    .cast-list{list-style:none;margin:0;padding:0;display:grid;grid-template-rows:repeat(5,minmax(0,1fr));gap:clamp(8px,1vw,12px)}
+    .cast-list button{position:relative;display:block;width:100%;height:100%;min-height:56px;padding:0;border:1px solid var(--line-soft);background:#0c0d0f;overflow:hidden;cursor:pointer;color:inherit;text-align:left}
+    .cast-list img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:grayscale(.85) brightness(.55);transition:filter .3s,transform .5s}
+    .cast-list button:hover img{filter:grayscale(.3) brightness(.8);transform:scale(1.04)}
+    .cast-list button[aria-pressed="true"]{border-color:var(--red)}
+    .cast-list button[aria-pressed="true"] img{filter:none}
+    .cast-list em{font-style:normal}.cast-list span{white-space:nowrap;position:absolute;left:10px;bottom:8px;font:600 10px/1 var(--mono);letter-spacing:.14em;color:var(--ivory);text-shadow:0 1px 6px rgba(0,0,0,.8)}
+    .px-dossier{position:relative;padding-top:clamp(48px,5vw,72px);padding-bottom:clamp(72px,8vw,120px);display:grid;grid-template-columns:minmax(180px,280px) minmax(0,1fr);gap:clamp(36px,7vw,100px);align-items:start}
+    .px-dossier .section-copy{margin-top:14px}
+
+    .company-panel{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);border:1px solid var(--line-soft)}
+    .company-panel .registry{border:0;padding:clamp(10px,2vw,20px) clamp(24px,3.4vw,40px)}
+    .company-panel .registry-row{grid-template-columns:150px 1fr}
+    .contact-stack{border-left:1px solid var(--line-soft);display:grid}
+    .contact-stack .contact-item{min-height:0;gap:14px}
+    .talk{margin:0;font:400 clamp(34px,4vw,60px)/.9 var(--display);letter-spacing:-.05em;text-transform:uppercase}
+    .contact-stack .contact-item+.contact-item{border-left:0;border-top:1px solid var(--line-soft)}
+
+    footer{border-top:1px solid var(--line-soft);padding:26px 0 34px;background:#09090a}
+    .footer-row{display:flex;justify-content:space-between;gap:30px;align-items:center;font:500 10px/1.5 var(--mono);letter-spacing:.09em;color:#77736d}.footer-logo{height:12px;width:auto}
+
+    .js .reveal{opacity:0;transform:translateY(22px);transition:opacity .65s ease,transform .65s ease}.reveal.in{opacity:1;transform:none}
+
+    @media (max-width:900px){
+      header{height:68px}.hero{padding-top:68px}.hero::before{inset:68px 0 0}.hero-media{inset:68px 0 0}.brand{min-width:0}.nav-links{display:none;position:absolute;top:68px;left:0;right:0;background:#0b0c0e;border-bottom:1px solid var(--line-soft);padding:20px var(--pad) 26px;flex-direction:column;align-items:flex-start;gap:20px}.nav-links.open{display:flex}.menu-btn{display:flex}
+      .hero-foot{grid-template-columns:1fr}.record-head{grid-template-columns:1fr}.carousel-viewport{aspect-ratio:16/10}.next-title{justify-self:start}.px-head{grid-template-columns:1fr}.cast{grid-template-columns:1fr}.cast-list{grid-template-rows:none;grid-template-columns:repeat(5,minmax(0,1fr))}.cast-list button{aspect-ratio:3/4;height:auto}.px-dossier{grid-template-columns:1fr;gap:28px;margin-top:0}.company-panel{grid-template-columns:1fr}.contact-stack{border-left:0;border-top:1px solid var(--line-soft)}
+      .section-grid{grid-template-columns:1fr;gap:34px}.section-intro{max-width:620px}.classified-grid{grid-template-columns:1fr}.field:nth-child(odd){border-right:0}.field:nth-last-child(-n+2){border-bottom:1px solid var(--line-soft)}.field:last-child{border-bottom:0}
+      .contact-panel{grid-template-columns:1fr}.contact-item+ .contact-item{border-left:0;border-top:1px solid var(--line-soft)}
+    }
+    @media (max-width:560px){
+      :root{--pad:20px}.brand-logo{height:14px}
+      .hero-inner{padding-top:64px}.hero-word{margin-top:22px}.hero-kicker{font-size:15px;letter-spacing:.06em}.px-title{font-size:clamp(60px,20vw,96px)}.cast-stage{aspect-ratio:4/5}.cast-stage img{object-position:45% center}.cast-bio{font-size:13px}.cast-list em{display:none}.cast-list span{left:8px}.cast-role{font-size:10px;letter-spacing:.12em}.cast-name{font-size:30px}.company-panel .registry{padding:6px 18px}.company-panel .registry-row{grid-template-columns:1fr}
+      .section{padding:70px 0}.section-title{font-size:36px}.classified{padding:24px;min-height:0}.stamp{font-size:14px;border-width:2px;padding:8px 10px}.field{grid-template-columns:92px 1fr;padding:13px 12px}.classified-foot{align-items:center}.barcode{width:92px}
+      .carousel-viewport{aspect-ratio:4/3}.carousel-btn{width:38px;height:38px}.carousel-btn.prev{left:10px}.carousel-btn.next{right:10px}.record-meta{grid-template-columns:1fr 1fr 1fr}.record-meta div{padding-right:8px;margin-right:0}.record-meta dd{white-space:normal;font-size:11px}.tm-note{font-size:10px}
+      .registry-row{grid-template-columns:1fr;gap:6px;padding:16px 0}.registry dd{font-size:13px}.contact-value{font-size:17px}.footer-row{align-items:flex-start;flex-direction:column;gap:8px}
+    }
+    @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}}
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header>
+    <div class="shell nav">
+      <a class="brand" href="#top" aria-label="ZEROXAND home">
+        <img class="brand-logo" src="assets/brand/zeroxand-logo.png" alt="ZEROXAND" width="1673" height="168">
+      </a>
+      <nav class="nav-links" id="navLinks" aria-label="Primary navigation">
+        <a href="#project-x">Project X</a><a href="#track-record">Track Record</a><a href="#company">Company</a><a href="#contact">Contact</a>
+      </nav>
+      <button class="menu-btn" type="button" aria-label="Open menu" aria-controls="navLinks" aria-expanded="false"><span></span></button>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" id="top" aria-labelledby="hero-title">
+      <div class="hero-media" aria-hidden="true">
+        <video muted playsinline preload="none" data-src="assets/video/px-teaser-01.mp4" data-src-sm="assets/video/px-teaser-01-480.mp4"></video>
+        <video muted playsinline preload="none" data-src="assets/video/px-teaser-02.mp4" data-src-sm="assets/video/px-teaser-02-480.mp4"></video>
+      </div>
+      <div class="hero-scan" aria-hidden="true"></div>
+      <button class="reel-ctrl" type="button" aria-pressed="false" aria-label="Pause background video" hidden><svg class="i-pause" viewBox="0 0 12 12"><rect x="2" y="1" width="3" height="10"/><rect x="7" y="1" width="3" height="10"/></svg><svg class="i-play" viewBox="0 0 12 12"><path d="M2 1l9 5-9 5z"/></svg><span>Project X teaser</span></button>
+      <div class="hero-inner">
+        <p class="eyebrow">Game Development &amp; Publishing — Singapore</p>
+        <h1 class="hero-word" id="hero-title"><img class="hero-logo" src="assets/brand/zeroxand-logo.png" alt="ZEROXAND" width="1673" height="168"></h1>
+        <div class="hero-foot">
+          <div>
+            <p class="hero-kicker">We develop and publish games for players around the world.</p>
+            <div class="hero-meta"><span>Singapore</span><span>Est. 2021</span><span>Independent Studio</span></div>
+          </div>
+          <a class="next-title" href="#project-x"><span class="nt-label">Next title</span><span class="nt-name">Project <span class="x">X</span></span><span class="nt-when">Q4 2027</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="px" id="project-x" aria-labelledby="project-title">
+      <div class="px-stage">
+        <div class="px-bg" aria-hidden="true"><img src="assets/project-x/bg.webp" alt=""></div>
+        <div class="shell px-head">
+          <div><span class="index">01 / Now in development</span><h2 class="px-title" id="project-title">Project <span class="x">X</span></h2></div>
+          <p class="px-lede">A side-scrolling defense game with a cast of original characters. Coming to mobile, PC and H5.</p>
+        </div>
+        <div class="shell cast" id="cast">
+          <figure class="cast-stage" aria-live="polite">
+            <img src="assets/project-x/char-01.webp" alt="Sera, Medic / Researcher" class="on" loading="eager" data-name="Sera" data-bio="Gentle and composed. She keeps the squad standing when the line starts to break." data-role="Medic / Researcher">
+            <img src="assets/project-x/char-02.webp" alt="Izuna, Wandering Swordswoman / Leader" loading="lazy" data-name="Izuna" data-bio="A silver-haired wanderer with a blade and the presence to lead from the front." data-role="Wandering Swordswoman / Leader">
+            <img src="assets/project-x/char-03.webp" alt="Roha, Scrap Hunter" loading="lazy" data-name="Roha" data-bio="Tough and fearless. She works the ruins for anything worth salvaging, and hits hard." data-role="Scrap Hunter">
+            <img src="assets/project-x/char-04.webp" alt="Nut, Mechanic / Hacker" loading="lazy" data-name="Nut" data-bio="A playful mechanic who can fix, hack or break anything with a wrench and a grin." data-role="Mechanic / Hacker">
+            <img src="assets/project-x/char-05.webp" alt="Sion, Sniper / Scout" loading="lazy" data-name="Sion" data-bio="Cold and quiet. She watches the field from far away and takes the shot that counts." data-role="Sniper / Scout">
+            <figcaption><span class="cast-id"><span class="cast-role">Medic / Researcher</span><span class="cast-name">Sera</span><span class="cast-bio">Gentle and composed. She keeps the squad standing when the line starts to break.</span></span><span class="cast-num"><b>01</b> / 05</span></figcaption>
+          </figure>
+          <ul class="cast-list" aria-label="Choose a character">
+            <li><button type="button" aria-pressed="true" aria-label="Show Sera, Medic / Researcher"><img src="assets/project-x/char-01.webp" alt="" style="object-position:44% 20%" loading="lazy"><span>01<em> · SERA</em></span></button></li>
+            <li><button type="button" aria-pressed="false" aria-label="Show Izuna, Wandering Swordswoman / Leader"><img src="assets/project-x/char-02.webp" alt="" style="object-position:52% 20%" loading="lazy"><span>02<em> · IZUNA</em></span></button></li>
+            <li><button type="button" aria-pressed="false" aria-label="Show Roha, Scrap Hunter"><img src="assets/project-x/char-03.webp" alt="" style="object-position:42% 25%" loading="lazy"><span>03<em> · ROHA</em></span></button></li>
+            <li><button type="button" aria-pressed="false" aria-label="Show Nut, Mechanic / Hacker"><img src="assets/project-x/char-04.webp" alt="" style="object-position:50% 22%" loading="lazy"><span>04<em> · NUT</em></span></button></li>
+            <li><button type="button" aria-pressed="false" aria-label="Show Sion, Sniper / Scout"><img src="assets/project-x/char-05.webp" alt="" style="object-position:45% 25%" loading="lazy"><span>05<em> · SION</em></span></button></li>
+          </ul>
+        </div>
+      </div>
+      <div class="shell px-dossier">
+        <div class="section-intro reveal"><span class="eyebrow">Project file</span><p class="section-copy">What we can share today. More will follow as development continues.</p></div>
+        <article class="classified reveal" id="classifiedCard">
+          <div class="classified-head"><div class="eyebrow">Internal File / 001-X</div><div class="stamp">Classified</div></div>
+          <dl class="classified-grid">
+            <div class="field"><dt>Status</dt><dd>In development</dd></div>
+            <div class="field"><dt>Codename</dt><dd>Project X</dd></div>
+            <div class="field"><dt>Genre</dt><dd>Anime-style · Side-scrolling defense</dd></div>
+            <div class="field"><dt>Platform</dt><dd>Mobile · PC · H5</dd></div>
+            <div class="field"><dt>Launch</dt><dd>Q4 2027</dd></div>
+            <div class="field"><dt>Access</dt><dd>Restricted</dd></div>
+          </dl>
+          <div class="classified-foot"><div>Further details will be announced when ready.</div><div class="barcode" aria-hidden="true"></div></div>
+        </article>
+      </div>
+    </section>
+
+    <section class="section record" id="track-record" aria-labelledby="record-title-head">
+      <div class="shell">
+        <div class="record-head reveal">
+          <div><span class="index">02 / Track Record</span><h2 class="record-title" id="record-title-head">Ragnarok<br>Monster World</h2></div>
+          <dl class="record-meta">
+            <div><dt>Role</dt><dd>Developed &amp; published in-house</dd></div>
+            <div><dt>Service</dt><dd>Global</dd></div>
+            <div><dt>Period</dt><dd>2024 — 2025</dd></div>
+          </dl>
+        </div>
+        <div class="reveal">
+          <div class="carousel" id="rmwCarousel" role="region" aria-roledescription="carousel" aria-label="Ragnarok Monster World images" tabindex="0">
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <figure class="slide" role="group" aria-roledescription="slide" aria-label="1 of 4"><img class="fill" src="assets/rmw-01-key-art.jpg" alt="" aria-hidden="true" loading="eager"><img class="shot" src="assets/rmw-01-key-art.jpg" alt="Ragnarok Monster World key art" loading="eager" draggable="false"></figure>
+                <figure class="slide" role="group" aria-roledescription="slide" aria-label="2 of 4"><img class="fill" src="assets/rmw-02-screens.jpg" alt="" aria-hidden="true" loading="lazy"><img class="shot" src="assets/rmw-02-screens.jpg" alt="Ragnarok Monster World store screenshots: key art, real-time battles and deck building" loading="lazy" draggable="false"></figure>
+                <figure class="slide" role="group" aria-roledescription="slide" aria-label="3 of 4"><img class="fill" src="assets/rmw-04-gameplay.jpg" alt="" aria-hidden="true" loading="lazy"><img class="shot" src="assets/rmw-04-gameplay.jpg" alt="Ragnarok Monster World gameplay banner" loading="lazy" draggable="false"></figure>
+                <figure class="slide" role="group" aria-roledescription="slide" aria-label="4 of 4"><img class="fill" src="assets/rmw-05-ragmons.jpg" alt="" aria-hidden="true" loading="lazy"><img class="shot" src="assets/rmw-05-ragmons.jpg" alt="Ragnarok Monster World Ragmon roster by rarity" loading="lazy" draggable="false"></figure>
+              </div>
+              <button class="carousel-btn prev" type="button" aria-label="Previous image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M15 5l-7 7 7 7"/></svg></button>
+              <button class="carousel-btn next" type="button" aria-label="Next image"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M9 5l7 7-7 7"/></svg></button>
+            </div>
+            <div class="carousel-bar"><div class="carousel-dots" role="group" aria-label="Choose image"></div><div class="carousel-count" aria-live="polite"></div></div>
+          </div>
+          <p class="tm-note">Ragnarok and related marks are trademarks of their respective owners.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="company" aria-labelledby="company-title">
+      <div class="shell section-grid">
+        <div class="section-intro reveal"><span class="index">03 /</span><h2 class="section-title" id="company-title">Company</h2><p class="section-copy">ZERO X AND PTE. LTD. is registered in Singapore. For business inquiries, get in touch.</p></div>
+        <div class="company-panel reveal">
+          <dl class="registry">
+            <div class="registry-row"><dt>Legal Name</dt><dd>ZERO X AND PTE. LTD.</dd></div>
+            <div class="registry-row"><dt>Incorporated</dt><dd>02 Nov 2021</dd></div>
+            <div class="registry-row"><dt>Primary Activity</dt><dd>Publishing of games software/applications (SSIC 58201)</dd></div>
+          </dl>
+          <div class="contact-stack" id="contact">
+            <div class="contact-item contact-head"><span class="contact-label">Contact</span><p class="talk">Let&rsquo;s talk.</p></div>
+            <div class="contact-item"><span class="contact-label">Email</span><div class="contact-value"><a href="mailto:baht@0xand.com">baht@0xand.com</a></div></div>
+            <div class="contact-item"><span class="contact-label">Office</span><div class="contact-value">38 Beach Road, #17-12,<br>South Beach Tower, Singapore 189767</div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer><div class="shell footer-row"><img class="footer-logo" src="assets/brand/zeroxand-logo.png" alt="ZEROXAND" width="1673" height="168" loading="lazy"><div>© ZERO X AND PTE. LTD. · Singapore</div></div></footer>
+
+  <script>
+    document.documentElement.classList.replace('no-js','js');
+    (()=>{
+      const btn=document.querySelector('.menu-btn');
+      const nav=document.querySelector('#navLinks');
+      btn?.addEventListener('click',()=>{const open=nav.classList.toggle('open');btn.setAttribute('aria-expanded',String(open));btn.setAttribute('aria-label',open?'Close menu':'Open menu')});
+      nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('open');btn?.setAttribute('aria-expanded','false')}));
+
+      const car=document.querySelector('#rmwCarousel');
+      if(car){
+        const track=car.querySelector('.carousel-track');
+        const slides=[...track.children];
+        const dots=car.querySelector('.carousel-dots');
+        const count=car.querySelector('.carousel-count');
+        const pad=n=>String(n).padStart(2,'0');
+        let i=0;
+        slides.forEach((_,n)=>{const b=document.createElement('button');b.type='button';b.setAttribute('aria-label',`Show image ${n+1}`);b.addEventListener('click',()=>go(n));dots.appendChild(b)});
+        const go=n=>{
+          i=(n+slides.length)%slides.length;
+          track.style.transform=`translateX(${-i*100}%)`;
+          [...dots.children].forEach((d,k)=>d.setAttribute('aria-current',String(k===i)));
+          slides.forEach((s,k)=>s.setAttribute('aria-hidden',String(k!==i)));
+          count.textContent=`${pad(i+1)} / ${pad(slides.length)}`;
+        };
+        car.querySelector('.prev').addEventListener('click',()=>go(i-1));
+        car.querySelector('.next').addEventListener('click',()=>go(i+1));
+        car.addEventListener('keydown',e=>{if(e.key==='ArrowLeft')go(i-1);if(e.key==='ArrowRight')go(i+1)});
+        const vp=car.querySelector('.carousel-viewport');
+        let x0=null,dx=0;
+        vp.addEventListener('pointerdown',e=>{if(e.target.closest('button'))return;x0=e.clientX;dx=0;track.classList.add('dragging');vp.setPointerCapture(e.pointerId)});
+        vp.addEventListener('pointermove',e=>{if(x0===null)return;dx=e.clientX-x0;track.style.transform=`translateX(calc(${-i*100}% + ${dx}px))`});
+        const end=()=>{if(x0===null)return;track.classList.remove('dragging');const w=vp.clientWidth;x0=null;if(Math.abs(dx)>w*.15)go(dx<0?i+1:i-1);else go(i)};
+        vp.addEventListener('pointerup',end);vp.addEventListener('pointercancel',end);
+        if(slides.length<2)car.querySelectorAll('.carousel-btn,.carousel-bar').forEach(el=>el.hidden=true);
+        go(0);
+      }
+
+      const cast=document.querySelector('#cast');
+      if(cast){
+        const shots=[...cast.querySelectorAll('.cast-stage img')];
+        const btns=[...cast.querySelectorAll('.cast-list button')];
+        const name=cast.querySelector('.cast-name'), role=cast.querySelector('.cast-role'), bio=cast.querySelector('.cast-bio'), num=cast.querySelector('.cast-num');
+        const pad=n=>String(n).padStart(2,'0');
+        const show=k=>{
+          shots.forEach((im,j)=>im.classList.toggle('on',j===k));
+          btns.forEach((b,j)=>b.setAttribute('aria-pressed',String(j===k)));
+          name.textContent=shots[k].dataset.name;
+          role.textContent=shots[k].dataset.role;
+          bio.textContent=shots[k].dataset.bio;
+          num.innerHTML=`<b>${pad(k+1)}</b> / ${pad(shots.length)}`;
+        };
+        btns.forEach((b,k)=>b.addEventListener('click',()=>show(k)));
+      }
+
+      const hero=document.querySelector('.hero');hero&&hero.style.setProperty('--scan-h',(hero.offsetHeight-80)+'px');
+
+      // Hero reel: plays the Project X teasers in turn. Skipped for reduced motion / data saver (poster stays).
+      const media=document.querySelector('.hero-media');
+      const ctrl=document.querySelector('.reel-ctrl');
+      const conn=navigator.connection||{};
+      if(media&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!conn.saveData){
+        const vids=[...media.querySelectorAll('video')];
+        const small=matchMedia('(max-width:700px)').matches;
+        let cur=0,paused=false,visible=true;
+        const load=v=>{if(!v.src){v.src=(small&&v.dataset.srcSm)||v.dataset.src;v.preload='auto';}};
+        const play=k=>{
+          cur=k;const v=vids[k];load(v);v.currentTime=0;
+          const p=v.play();if(p&&p.catch)p.catch(()=>{});
+          vids.forEach((o,j)=>o.classList.toggle('on',j===k));
+          load(vids[(k+1)%vids.length]);
+        };
+        vids.forEach((v,k)=>v.addEventListener('ended',()=>{if(!paused)play((k+1)%vids.length)}));
+        setTimeout(()=>{play(0);ctrl.hidden=false},1200);
+        ctrl.addEventListener('click',()=>{
+          paused=!paused;ctrl.setAttribute('aria-pressed',String(paused));
+          ctrl.setAttribute('aria-label',paused?'Play background video':'Pause background video');
+          const v=vids[cur];if(paused)v.pause();else{const p=v.play();if(p&&p.catch)p.catch(()=>{});}
+        });
+        new IntersectionObserver(es=>es.forEach(e=>{visible=e.isIntersecting;const v=vids[cur];if(!v.src)return;if(!visible)v.pause();else if(!paused){const p=v.play();if(p&&p.catch)p.catch(()=>{});}})).observe(media);
+      }
+
+      const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!reduced){
+        const io=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.14});
+        document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+        const card=document.querySelector('#classifiedCard');
+        card?.addEventListener('pointermove',e=>{
+          const r=card.getBoundingClientRect();
+          const x=(e.clientX-r.left)/r.width-.5, y=(e.clientY-r.top)/r.height-.5;
+          card.style.transform=`perspective(900px) rotateX(${(-y*2.6).toFixed(2)}deg) rotateY(${(x*3.2).toFixed(2)}deg)`;
+        });
+        card?.addEventListener('pointerleave',()=>{card.style.transform=''});
+      }else{document.querySelectorAll('.reveal').forEach(el=>el.classList.add('in'))}
+    })();
+  </script>
+</body>
+</html>
